@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sky Sky</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+  </head>
+  <body data-mode='day' dropzone="move">
+    <div class="images-container">
+      <img src="images/guillaume-galtier-493400-unsplash.jpg" alt="dayImage" class="dayImage">
+      <img src="images/teddy-kelley-70401-unsplash.jpg" alt="nightImage" class="nightImage">
+    </div>
+    <div class="dayNightBtn">
+      <div class="dayBtn" data-mode='day'>
+        DAY
+      </div>
+      <div class="nightBtn" data-mode='night'>
+        NIGHT
+      </div>
+    </div>
+    <h1 class="title">SkySky</h1>
+    <div class='drag-box'>
+      <img src='images/dragbtn-white.png' alt='dragBtn' class="dragBtn dragBtn-white" draggable="false" >
+      <img src='images/dragbtn.png' alt='dragBtn' class="dragBtn dragBtn-black" draggable="false">
+      <div class="story-container">
+        <div class="story">
+          <p>Have you ever seen the sky you never saw before?</p>
+          <img src="images/upload_button.png" alt="upload_button" class='uploadBtn' draggable="false">
+          <div class="story-image">
+            <img src="images/antonino-visalli-iI1SSTbW218-unsplash.jpg" alt="sky">
+          </div>
+          <div class="story-data">
+            19.06.20 morning<br/>
+            in Washington.
+          </div>
+          <div class="story-text">
+            "HELLO!"
+          </div>
+          <div class="story-id">
+            by dearmoon.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal section -->
+    <div class="bg-modal">
+      <div class="modal-contents">
+        <div class="beforeUpload">
+          <label for='uploadImg' alt="image-upload-btn" class='getImage' draggable="false"></label>
+          <input type="file" id="uploadImg" accept=".jpg, .jpeg, .png">
+          <p>Add a image..</p>
+        </div>
+        <img src="images/loading.png" alt="loading" class='loading'>
+        <div class="modal-image">
+        </div>
+        <div class="modal-text">
+          <p>When?</p>
+          <div class="inputContainer">
+            <input type="date" id="when" language="en">
+          </div>
+          <p>Where?</p>
+          <div class="inputContainer">
+            <input type="text" id="where">
+          </div>
+          <p>What's your name?</p>
+          <div class="inputContainer">
+            <input type="text" id="name">
+          </div>
+          <p>Comment?</p>
+          <div class="inputContainer">
+            <textarea id="comment" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="submitBtn">submit</div>
+        <div class="close">+</div>
+      </div>
+    </div>
+    <script src="js/index.js"></script>
+  </body>
+</html>
