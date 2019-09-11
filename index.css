@@ -53,11 +53,11 @@ body{
   position: absolute;
   top: 0.5vw;
   left: 50%;
+  width: 9.5rem;
   transform: translateX(-50%);
   border: 1px rgba(0, 0, 0, 0.44) solid;
   border-radius: 20px;
   text-align: center;
-  font-size: 0px;
   color: rgba(0, 0, 0, 0.44);
   transition: border-color 2.5s;
   z-index: 3;
@@ -87,7 +87,7 @@ body{
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
   cursor: pointer;
-  transition :2.5s;
+  transition : 2.5s;
   z-index: 3;
 }
 .title{
@@ -382,7 +382,6 @@ body[data-mode='night'] .dayNightBtn{
   border: 1px rgba(255, 255, 255, 0.8) solid;
 }
 body[data-mode='day'] .dayBtn{
-  box-shadow: inset 0.1em 0.1em rgba(0, 0, 0, 0.2);
   background-color: rgba(0, 0, 0, 0.05);
 }
 body[data-mode='night'] .dayBtn{

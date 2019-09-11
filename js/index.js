@@ -9,18 +9,23 @@
         modal = document.querySelector('.bg-modal'),
         modalClose = document.querySelector('.close'),
         modalImage = document.querySelector('.modal-image'),
-        uploadBtn = document.querySelector('.uploadBtn');
+        uploadBtn = document.querySelector('.uploadBtn'),
+        beforeUpload = document.querySelector('.beforeUpload'),
+        modalText = document.querySelector('.modal-text');
     let mouseState = false,
         titleTop = false;
 
     // modal close 버튼을 눌렀을 때 이벤트
     modalClose.addEventListener('click', function(){
        modal.style.display = 'none'; 
+       modalImage.firstChild.remove();
+       resetUpload();
     });
 
     // upload 버튼을 눌렀을 때 이벤트
     uploadBtn.addEventListener('click', function(){
         modal.style.display = 'flex';
+        modalClose.style.display = 'block';
     });
 
     // 각 input에 값이 입력 되었을 때 활성화되는 이벤트
@@ -104,9 +109,6 @@
         let dateString2 = date.value.slice(5,7)
         let dateString3 = date.value.slice(8,10)
         let dateString = dateString1 + '.' + dateString2 + '.' + dateString3;
-        console.log(where.value);
-        console.log(name.value);
-        console.log(comment.value);
 
         const img = modalImage.firstChild;
         const value = img.naturalWidth / img.naturalHeight;
@@ -122,21 +124,48 @@
         img.style.opacity = '0.7';
         img.style.marginTop = '10vh';
         
-        new Info (dateString, where.value);
-        new Text (comment.value);
-        new Name (name.value);
+        modalImage.style.display = 'none';
+        modalText.style.display = 'none';
+        submitBtn.style.display = 'none';
+        loading.style.display = 'block';
+        modalClose.style.display = 'none';
 
-
-        story.insertBefore(img, story.childNodes[2]);
-        modal.style.display = 'none';
+        setTimeout(function(){
+            loading.style.display = 'none';
+            modal.style.display = 'none';
+            new Info (dateString, where.value);
+            new Text (comment.value);
+            new Name (name.value);
+            story.insertBefore(img, story.childNodes[2]);
+            resetUpload();
+        }, 1000);
+        
     });
+    
+    // 업로드 후 리셋되는 기능
+    function resetUpload(){
+        beforeUpload.style.display = 'flex';
+        modalImage.style.display = 'none';
+        modalText.style.display = 'none';
+        submitBtn.style.display = 'none';
+        date.value = null;
+        where.value = null;
+        name.value = null;
+        comment.value = null;
+        input.value = null;
+        dateValue = false;
+        whereValue = false;
+        nameValue = false;
+        commentValue = false;
+    };
+
 
     // input된 정보들을 업로드 되도록 하는 생성자함수
     function Info (d, w) {
         this.mainElem = document.createElement('div');
         this.mainElem.classList.add('story-data');
         this.mainElem.innerHTML = ''
-            + d + ' morning' + '<br>' + 'in ' + w;
+            + d + '<br>' + 'in ' + w;
         
         story.insertBefore(this.mainElem, story.childNodes[2]);
     };
@@ -156,8 +185,10 @@
 
         story.insertBefore(this.mainElem, story.childNodes[4]);      
     };
-
+    
     // // input[type=file]의 요소가 바꼈을 때 이벤트
+    const loading = document.querySelector('.loading');
+
     input.addEventListener('change',function(e){
         const reader = new FileReader();
         reader.onload = function() {
@@ -182,10 +213,7 @@
                     img.style.width = '100%';
                     img.style.backgroundSize = 'cover';
                 }
-                
-                const beforeUpload = document.querySelector('.beforeUpload'),
-                    modalText = document.querySelector('.modal-text'),
-                    loading = document.querySelector('.loading');
+            
 
                 beforeUpload.style.display = 'none';
                 loading.style.display = 'block';
